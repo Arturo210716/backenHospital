@@ -36,7 +36,7 @@ def create_expediente(expediente: schemas.expediente.ExpedienteCreate, db: Sessi
 
 @expediente.put("/expedienteUpdate/{ID}", response_model=schemas.expediente.Expediente, tags=["Expediente"] ,dependencies=[Depends(Portador())])
 def update_expediente(ID: int, expediente: schemas.expediente.ExpedienteUpdate, db: Session = Depends(get_db)):
-    db_exp = crud.expediente.update_expediente(db = db, ID = ID, expediente = expediente)
+    db_exp = crud.expediente.update_expediente(db = db, ID = ID, exp = expediente)
     if db_exp is None:
         raise HTTPException(status_code=404, detail="Persona no existente, no esta actuaizado")
     return db_exp
